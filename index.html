@@ -7,7 +7,7 @@
 
     <!--
     ======================================================
-    CMPT 315 — Lab 6 Starter 
+    CMPT 315 — Lab 6 
     ======================================================
 
     WHAT THIS APP DOES (big picture):
@@ -27,6 +27,23 @@
 	Use let only for variables that need to change during execution 
 	(e.g., loop counters, accumulating totals, values updated inside functions).
   -->
+
+  <!-- Short Answer Question Section:
+  •	Why do we need async/await when using fetch()?
+  Answer: these are a way of reducing then() callback methods when fetching Promise objects. They allow us to write asynchronous code without the confusion. Await by itself can be used for synchronous code.
+  •	What does OpenTDB response_code mean in your implementation? Explain 0 and 5.
+  Answer: According to the website response code 0 means that a response was returned successfully. Response code 5 means that the API rate limit has been reached. Not sure what this means though(???).
+  •	What exactly is stored under STORAGE_KEY and why is JSON used?
+  Answer: The best score, total questions, and number of attempts should be stored under STORAGE_KEY. A JSON is used so that our javascript object can be stored in localStorage in a string format. 
+  •	Describe what happens from clicking Start Quiz until the first question is displayed (mention the functions involved).
+  Answer: When the Start Button is clicked, runRoundFlow() is called. This function first validates the form by calling validateStartForm(), then it call validateStartForm() which transcribes the form data into state.player. 
+  Then it sets the ROUND.difficulty based on the dropdown selection. Then it calls beginRound() which resets the round's state to initial values. The showOnly(screenQuiz) is called to switch to the quiz screen. It checks to 
+  see if an API token is available, if not is calls getToken() to get the API token. Then fetchQuestions(Round) is called to fetch another question API. When the questions are fetched, they are formatted and shuffled and stores 
+  it in state.questions. Then setLoading(false)is called and hides the loading message. Finally, renderQuestion() is called which shows a question on the quiz screen based on an external intex value/state.
+  
+  -->
+
+
     <style>
       /* =========================
        Task F: Creative UX
@@ -604,7 +621,7 @@
           scoreEl.textContent = "0";
           qNumEl.textContent = "1";
           qTotalEl.textContent = String(ROUND.amount);
-          setApiError(null);
+          setApiError(null); //What does this do???
         }
 
         function renderQuestion() {
